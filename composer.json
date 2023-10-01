@@ -1,0 +1,40 @@
+{
+  "name": "atkins/importmap",
+  "type": "typo3-cms-extension",
+  "description": "Easily import your JavaScript ES modules without the need of a bundler like Webpack within the TYPO3 frontend",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "TYPO3 CMS",
+    "Importmap",
+    "Webpack",
+    "RequireJS",
+    "CommonJS",
+    "ES modules"
+  ],
+  "require": {
+    "typo3/cms-core": "^12.0"
+  },
+  "homepage": "https://github.com/colinatkins/importmap",
+  "support": {
+    "source": "https://github.com/colinatkins/importmap",
+    "docs": "https://docs.typo3.org/p/atkins/importmap/12.0/en-us/",
+    "issues": "https://github.com/colinatkins/importmap/issues"
+  },
+  "authors": [
+    {
+      "name": "Colin Atkins",
+      "role": "Developer",
+      "homepage": "https://www.pagedoctor.de"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Atkins\\Importmap\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "importmap"
+    }
+  }
+}
