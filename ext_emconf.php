@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Importmap',
     'description' => 'Easily import your JavaScript ES modules without the need of a build system like Webpack',
