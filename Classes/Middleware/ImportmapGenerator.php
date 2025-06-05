@@ -8,6 +8,7 @@
 namespace Atkins\Importmap\Middleware;
 
 use Atkins\Importmap\Middleware\Exceptions\ImportmapFileNotFoundException;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Resource\Exception\FileDoesNotExistException;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -25,20 +26,28 @@ class ImportmapGenerator implements \Psr\Http\Server\MiddlewareInterface
 
     public function process(\Psr\Http\Message\ServerRequestInterface $request, \Psr\Http\Server\RequestHandlerInterface $handler): \Psr\Http\Message\ResponseInterface
     {
-        $controller = $request->getAttribute('frontend.controller');
-        if ($this->skipBeforeFilter($controller->pSetup)) return $handler->handle($request);
-        $controller->pSetup = $this->setOrOverrideShims($controller->pSetup);
-        $controller->pSetup = $this->setOrOverrideApplicationName($controller->pSetup);
+        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class);
+        if ($typo3Version->getMajorVersion() == 13) {
+            $fullTypoScript = $request->getAttribute('frontend.typoscript');
+            $setup = $fullTypoScript->getSetupArray()['page.'] ?? null;
+        } else {
+            $controller = $request->getAttribute('frontend.controller');
+            $setup = $controller->pSetup;
+        }
+        if ($this->skipBeforeFilter($setup)) return $handler->handle($request);
 
-        $importmap = $this->parseImportmapTypoScript($controller->pSetup['importmap.']);
-        $preloadmap = $this->parsePreloadTypoScript($controller->pSetup['importmap.']);
+        $setup = $this->setOrOverrideShims($setup);
+        $setup = $this->setOrOverrideApplicationName($setup);
+
+        $importmap = $this->parseImportmapTypoScript($setup['importmap.']);
+        $preloadmap = $this->parsePreloadTypoScript($setup['importmap.']);
 
         $this->getPageRenderer()->addHeaderData(
             "\n"
             . implode("\n", [
                 $this->constructImportmapTag($importmap),
                 $this->constructModulePreloadTags($preloadmap),
-                $this->constructShimsTag($controller->pSetup['importmap.']['shims']),
+                $this->constructShimsTag($setup['importmap.']['shims']),
                 $this->constructModuleTag('application')
             ])
             . "\n");
