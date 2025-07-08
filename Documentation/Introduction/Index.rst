@@ -42,12 +42,12 @@ Features
 ========
 
 Once installed this extension is automatically loaded on each frontend request.
-Simply specify a TypoScript configuration at the PAGE-object level.
+Simply specify a YAML configuration at the settings.yaml file within your site set.
 The needed html-tags are then generated.
 
 A list of functions:
 
-* Easy TypoScript configuration
+* Easy YAML configuration
 * Support Bootstrapping through an starting import statement
 * Easily preload modules through link-tags
-* Override module names to keep visual order in TypoScript
+* Override module names to keep visual order in YAML file

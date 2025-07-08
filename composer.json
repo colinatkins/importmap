@@ -2,7 +2,7 @@
   "name": "atkins/importmap",
   "type": "typo3-cms-extension",
   "description": "Easily import your JavaScript ES modules without the need of a bundler like Webpack within the TYPO3 CMS",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "license": "GPL-2.0-or-later",
   "keywords": [
     "TYPO3 CMS",
@@ -13,7 +13,7 @@
     "ES modules"
   ],
   "require": {
-    "typo3/cms-core": "^12.0 || ^13.0"
+    "typo3/cms-core": "^13.4"
   },
   "homepage": "https://github.com/colinatkins/importmap",
   "support": {

@@ -6,3 +6,9 @@ services:
 
   Atkins\Importmap\:
     resource: '../Classes/*'
+
+  Atkins\Importmap\Middleware\ImportmapGenerator:
+    public: true
+
+  Atkins\Importmap\Service\ImportmapParserService:
+    public: true

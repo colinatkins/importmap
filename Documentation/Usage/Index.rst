@@ -24,24 +24,25 @@ The import statement has to be added to the top of your **application** file spe
     import Alpine from 'alpinejs'
     import HeaderController from 'controllers/header_controller'
 
-The corresponding TypoScript configuration would look like this:
+The corresponding YAML configuration would look like this:
 
-.. code-block:: typoscript
+.. code-block:: yaml
 
-    page.importmap {
-        application {
-            path = EXT:your_extension/Resources/Public/JavaScript/application.js
-        }
-        stimulus {
-            path = EXT:your_extension/Resources/Public/JavaScript/modules/stimulus.js
-            preload = 1
-        }
-        alpinejs {
-            path = EXT:your_extension/Resources/Public/JavaScript/modules/alpinejs.js
-            preload = 1
-        }
-        controllers/header_controller {
-            path = EXT:your_extension/Resources/Public/JavaScript/controllers/header_controller.js
-            preload = 1
-        }
-    }
+    page:
+        importmap:
+            application:
+            path: EXT:your_extension/Resources/Public/JavaScript/application.js
+            modules/stimulus:
+                path: EXT:your_extension/Resources/Public/JavaScript/modules/stimulus-3.2.2.js
+                preload: 1
+                override: '@hotwired/stimulus'
+            modules/turbo:
+                path: EXT:your_extension/Resources/Public/JavaScript/modules/turbo-8.0.13.js
+                preload: 1
+                override: '@hotwired/turbo'
+            modules/alpinejs:
+                path: EXT:your_extension/Resources/Public/JavaScript/modules/alpinejs-3.14.9.js
+                preload: 1
+                override: alpinejs
+            controllers/hello_controller:
+                path: EXT:your_extension/Resources/Public/JavaScript/controllers/hello_controller.js

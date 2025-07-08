@@ -35,7 +35,7 @@ build systems is often not needed when building low cost frontend applications
 with TYPO3. The importmap generator for TYPO3 aims to reduce complexity
 and make it easy to precisely import ES modules without the need of a build system.
 This is possible with the easy to use importmap generator which is configured
-with usual TypoScript.
+with the site settings.yaml file.
 
 ----
 
